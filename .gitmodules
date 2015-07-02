@@ -1,0 +1,30 @@
+[submodule "packages/haskell-mode"]
+  path = packages/haskell-mode
+  url = https://github.com/haskell/haskell-mode.git
+[submodule "packages/structured-haskell-mode"]
+  path = packages/structured-haskell-mode
+  url = https://github.com/chrisdone/structured-haskell-mode.git
+[submodule "packages/ghci-ng"]
+  path = packages/ghci-ng
+  url = https://github.com/chrisdone/ghci-ng.git
+[submodule "packages/hindent"]
+  path = packages/hindent
+  url = https://github.com/chrisdone/hindent.git
+[submodule "packages/smex"]
+  path = packages/smex
+  url = https://github.com/nonsequitur/smex.git
+[submodule "packages/magit"]
+  path = packages/magit
+  url = https://github.com/magit/magit.git
+[submodule "packages/git-modes"]
+  path = packages/git-modes
+  url = https://github.com/magit/git-modes.git
+[submodule "packages/haskell-docs"]
+  path = packages/haskell-docs
+  url = https://github.com/chrisdone/haskell-docs.git
+[submodule "packages/evil"]
+  path = packages/evil
+  url = https://github.com/emacsmirror/evil.git 
+[submodule "packages/sml-mode"]
+  path = packages/sml-mode
+  url = https://github.com/emacsmirror/sml-mode.git
