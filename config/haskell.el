@@ -41,13 +41,6 @@
   (interactive)
   (insert "-- | "))
 
-(defun haskell-insert-undefined ()
-  "Insert undefined."
-  (interactive)
-  (if (and (boundp 'structured-haskell-mode)
-           structured-haskell-mode)
-      (shm-insert-string "undefined")
-    (insert "undefined")))
 
 (defun haskell-move-right ()
   (interactive)
@@ -74,42 +67,7 @@
         (rename-buffer "*who-calls*")
         (switch-to-buffer-other-window buffer)))))
 
-(defun haskell-auto-insert-module-template ()
-  "Insert a module template for the newly created buffer."
-  (interactive)
-  (when (and (= (point-min)
-                (point-max))
-             (buffer-file-name))
-    (insert
-     "-- | "
-     "\n"
-     "\n"
-     "module "
-     )
-    (let ((name (haskell-guess-module-name)))
-      (if (string= name "")
-          (progn (insert "Main")
-                 (shm-evaporate (- (point) 5)
-                                (point)))
-        (insert name)))
-    (insert " where"
-            "\n"
-            "\n")
-    (goto-char (point-min))
-    (forward-char 4)))
 
-(defun shm-contextual-space ()
-  "Do contextual space first, and run shm/space if no change in
-the cursor position happened."
-  (interactive)
-  (if (looking-back "import")
-      (call-interactively 'haskell-mode-contextual-space)
-    (progn
-      (let ((ident (haskell-ident-at-point)))
-        (when ident
-          (and interactive-haskell-mode
-               (haskell-process-do-try-type ident))))
-      (call-interactively 'shm/space))))
 
 ;; Mode settings
 (custom-set-variables
@@ -126,10 +84,7 @@ the cursor position happened."
  '(haskell-process-use-presentation-mode t)
  '(haskell-interactive-mode-include-file-name nil)
  '(haskell-interactive-mode-eval-pretty nil)
- '(shm-use-presentation-mode t)
- '(shm-auto-insert-skeletons t)
- '(shm-auto-insert-bangs t)
- '(haskell-process-suggest-haskell-docs-imports t)
+ ;;'(haskell-process-suggest-haskell-docs-imports t)
  '(hindent-style "chris-done")
  '(haskell-interactive-mode-eval-mode 'haskell-mode)
  '(haskell-process-path-ghci "ghci-ng")
@@ -187,14 +142,3 @@ the cursor position happened."
 (define-key haskell-interactive-mode-map (kbd "C-<left>") 'haskell-interactive-mode-error-backward)
 (define-key haskell-interactive-mode-map (kbd "C-<right>") 'haskell-interactive-mode-error-forward)
 (define-key haskell-interactive-mode-map (kbd "C-c c") 'haskell-process-cabal)
-
-(define-key shm-map (kbd "C-c C-p") 'shm/expand-pattern)
-(define-key shm-map (kbd "C-c C-s") 'shm/case-split)
-(define-key shm-map (kbd "SPC") 'shm-contextual-space)
-(define-key shm-map (kbd "C-\\") 'shm/goto-last-point)
-(define-key shm-map (kbd "C-c C-f") 'shm-fold-toggle-decl)
-(define-key shm-map (kbd "C-c i") 'shm-reformat-decl)
-
-(custom-set-faces
- '(shm-quarantine-face ((t (:inherit font-lock-error))))
- '(shm-current-face ((t (:background "#efefef")))))

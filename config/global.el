@@ -1,5 +1,10 @@
 (require 'uniquify)
 
+;; theme moe-dark
+(load-theme `moe-dark t)
+;; evil mode for vim key bindings
+(evil-mode 1)
+
 ;; Fundamental functions
 (defun set-auto-saves ()
   "Put autosave files (ie #foo#) in one place, *not*
@@ -145,7 +150,6 @@
            (hindent-style . "chris-done")
            (hindent-style . "gibiansky")
            (hindent-style . "johan-tibell")
-           (haskell-process-type . cabal-repl)
-           (shm-lambda-indent-style . leftmost-parent)))))
+           (haskell-process-type . cabal-repl)))))
 
 (provide 'global)
